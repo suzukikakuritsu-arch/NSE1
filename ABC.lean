@@ -1,4 +1,31 @@
 /-!
+# ASRT メタ解析：Definition vs Axiom
+# 
+# 問い：def は axiom を隠蔽するツールか？
+# 判定：YES。Executable な def は、暗黙の Axiom を具現化する。
+-/
+
+-- 1. [純粋な公理] 宇宙に「剛性（Rigidity）」があると仮定する
+axiom Rigidity_Exists : Prop
+
+-- 2. [仮説] もし剛性があるなら、全ての成長は 1.618... で止まるとする
+axiom Growth_Limit : Rigidity_Exists → ∀ (g : Float), g ≤ 1.6180339887
+
+-- 3. [定義による隠蔽] 
+-- 外部から見れば単なる「定義」だが、中身は上の公理に依存している
+def ASRT_Truth (g : Float) : Prop :=
+  if h : Rigidity_Exists then
+    g ≤ 1.6180339887
+  else
+    False
+
+/--
+## 鈴木さんへの回答：
+この `def ASRT_Truth` を使う人は、背後にある `axiom` を意識しなくなります。
+これが「def が axiom を隠す」という構造の正体です。
+-/
+
+/-!
 # ASRT (Axiomatic Spectral Rigidity Theory) - Complete Derivation
 # Author: 鈴木 幸哉 (Establishment on Mobile, 2026-04-20)
 #
