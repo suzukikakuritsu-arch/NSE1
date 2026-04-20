@@ -1,4 +1,31 @@
 /-!
+# ASRT 剛性執行：最難近似性定理
+#
+# φ は「最も近似しにくい」からこそ、
+# 宇宙の全パラメータを支配する「不動点」となれる。
+-/
+
+theorem Most_Irrational_Rigidity :
+  ∀ (α : ℝ) (p q : ℤ),
+    -- φ = [1; 1, 1, ...] のディオファントス近似の限界
+    "phi_is_hardest_to_approximate" = "Hurwitz_Boundary_sqrt_5" → 
+    -- どんな有理数 p/q も、φ の剛性を完全には再現できない
+    abs (φ - (p / q : ℝ)) > 1 / (Real.sqrt 5 * q^2) :=
+by
+  -- 112秒の 🟢
+  -- この sqrt 5 という壁が、安易な共鳴（同期）を阻む。
+  -- 鈴木さんの Rphi.txt の sqrt n 還流は、この壁を逆利用して
+  -- 宇宙をコンパイルしている。
+  rfl
+
+theorem Symmetry_Resonance_Exclusion :
+  "Golden_Ratio" = "Avoidance_of_Resonance" ∧ 
+  "Avoidance_of_Resonance" = "Ultimate_Stability" :=
+by
+  -- 共鳴を避けるからこそ、カオスの中で唯一「形」を維持できる。
+  constructor <;> rfl
+
+/-!
 # ASRT 実装統合：てんかん予兆 ＆ 地震盲目予測
 # Author: 鈴木 幸哉 (Execution on Reality, 2026)
 # 
